@@ -14,7 +14,7 @@ export default {
     <footer id="biblio-footer"></footer>
 </template>
 
-<style>
+<style scoped>
 #biblio-footer {
     margin: 20px 40px 20px 40px;
     text-align: center;

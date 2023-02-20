@@ -50,6 +50,7 @@ export default {
 
 <template>
     <div class="container-fluid bg ">
+
         <div class="row">
             <div class="col-12">
                 <div class="search-box">
@@ -107,7 +108,7 @@ export default {
 };
 </script>
   
-<style>
+<style scoped>
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,700');
 
 
@@ -148,7 +149,7 @@ export default {
     border: none;
     box-sizing: border-box;
     border-radius: 50px;
-    transition: width 800ms cubic-bezier(0.5, -0.5, 0.5, 0.5) 600ms;
+    transition: width 800ms cubic-bezier(0.5, -0.5, 0.5, 0.5) 300ms;
 }
 
 .search-box input[type='text']:focus {

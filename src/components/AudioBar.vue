@@ -35,12 +35,26 @@
         </div>
         <audio ref="audioPlayer" class="hidden" :src="audioUrl" controls />
     </div>
+
+
+
+    <div v-if="showDialog" class="backdrop">
+        <div class="dialog-wrapper">
+            <teleport to="body">
+                <Dialog :title="title" :message="message" :song="currentSong" @nextGame="loadNext" />
+            </teleport>
+        </div>
+    </div>
 </template>
 
 <script>
 import { useStore } from "../stores/store.js";
 import { mapState, mapActions } from "pinia";
+import Dialog from "./Dialog.vue";
 export default {
+    components: {
+        Dialog,
+    },
     data() {
         return {
             progressWidth: 0,
@@ -53,8 +67,13 @@ export default {
             isPlaying: false,
             audioUrl: "",
             songFullName: "",
+            currentSong: [],
             filterText: '',
             items: [],
+
+            showDialog: false,
+            title: "Dialog Title",
+            message: "Dialog message goes here.",
         };
     },
     computed: {
@@ -72,11 +91,11 @@ export default {
         ...mapActions(useStore, ["getRandomSongFromArtist"]),
         sumbitSong() {
             if (this.songFullName === this.filterText) {
-                alert("Correcto")
                 this.filterText = "";
-                this.startApp()
+                this.title = "NICE GUESS!";
+                this.message = "green";
+                this.showDialog = true;
             } else {
-                alert("MAL")
                 this.skipTry();
                 this.filterText = "";
             }
@@ -88,11 +107,11 @@ export default {
                 this.playTime = this.segments[this.try];
                 this.totalDuration = this.playTime;
             } else {
-                alert("has perdido")
+                this.title = "YOU FAILED!";
+                this.message = "red";
                 this.try = 0;
                 this.playTime = 16;
-                alert(this.songFullName);
-                this.startApp();
+                this.showDialog = true;
             }
         },
         disableButtons() {
@@ -134,6 +153,8 @@ export default {
                 const artists = song.artists.map(artist => artist.name);
                 const trackName = song.name;
                 const fullName = artists.join(', ') + ' - ' + trackName;
+                this.currentSong = song;
+                console.log(this.currentSong.name)
                 this.songFullName = fullName;
                 this.audioUrl = song.preview_url;
             } catch (err) {
@@ -159,14 +180,40 @@ export default {
         autoComplete(name) {
             this.filterText = name;
         },
+        loadNext() {
+            this.showDialog = false;
+            this.startApp();
+
+        }
     },
     async mounted() {
+        this.showDialog = false;
         this.startApp();
     }
 };
 </script>
 
-<style>
+<style scoped>
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 5;
+}
+
+.dialog-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+
 .progress-bar-container {
     width: 100%;
     height: 25px;

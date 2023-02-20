@@ -19,7 +19,7 @@ export default {
 </script>
 
 <template>
-    <div class="container-fluid text-center mx-auto mt-5 gts-page">
+    <div class="container-fluid text-center mx-auto gts-page">
         <div class="row">
             <h1 class="display-1 gts-title pt-4 mt-4">GUESS THE SONG</h1>
             <h3 class="text-white mb-4 pb-4">ft. {{ this.artistName }}</h3>

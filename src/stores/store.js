@@ -31,7 +31,6 @@ export const useStore = defineStore('store', {
 
 				const data = await response.json();
 				this.accessToken = data.access_token;
-				console.log(this.accessToken);
 			} catch (error) {
 				console.error(error);
 			}
@@ -73,7 +72,6 @@ export const useStore = defineStore('store', {
 				let array = [];
 				array.push(tracks);
 				array.push(randomTrack);
-				console.log(this.artistName);
 				return array;
 			} catch (error) {
 				console.error(error);

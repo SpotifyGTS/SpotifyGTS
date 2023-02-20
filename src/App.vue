@@ -22,9 +22,7 @@ export default {
 </script>
 
 <template>
-    <app-menu titulo="Titulo"></app-menu>
     <router-view></router-view>
-    <app-footer></app-footer>
 </template>
 
 <style>

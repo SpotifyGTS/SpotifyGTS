@@ -27,18 +27,20 @@ export default {
     </nav>
 </template>
 
-<style>
+<style scoped>
 a {
     margin-left: 20px;
     display: flex;
     align-items: center;
 }
+
 a:link,
 a:visited,
 a:active {
     text-decoration: none;
     color: azure;
 }
+
 a:hover {
     color: aqua;
 }
