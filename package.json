@@ -1,0 +1,22 @@
+{
+  "name": "spotifygts",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.3.3",
+    "bootstrap": "^5.2.3",
+    "pinia": "^2.0.28",
+    "spotify-web-api-js": "^1.5.2",
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "vite": "^4.0.0"
+  }
+}
